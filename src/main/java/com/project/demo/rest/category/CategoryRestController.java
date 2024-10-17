@@ -26,7 +26,7 @@ public class CategoryRestController {
     private CategoryRepository categoryRepository;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('SUPER_ADMIN_ROLE')")
+
     public ResponseEntity<?> getAll(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
