@@ -1,34 +1,12 @@
 package com.project.demo.logic.entity.product;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.demo.logic.entity.category.Category;
-import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.List;
-
-@Table(name = "product")
-@Entity
-public class Product  {
-
-    // id, nombre, descripción, precio, cantidad en stock y Categoría
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductDTO {
     private Long id;
     private String name;
     private String description;
     private Double price;
     private Integer stock;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    @JsonBackReference
-    private Category category;
-
+    private Long category_id; // Aquí se almacena el ID de la categoría
 
     public Long getId() {
         return id;
@@ -40,9 +18,6 @@ public class Product  {
 
     public String getName() {
         return name;
-    }
-
-    public Product() {
     }
 
     public void setName(String name) {
@@ -73,17 +48,23 @@ public class Product  {
         this.stock = stock;
     }
 
-    public Category getCategory() {
-        return category;
+    public Long getcategory_id() {
+        return category_id;
+    }
+
+    public void setcategory_id(Long category_id) {
+        this.category_id = category_id;
     }
 
 
-    public void setCategory(Category category) {
-        this.category = category;
+
+    // Constructor, getters y setters
+    public ProductDTO(Long id, String name, String description, Double price, Integer stock, Long category_id) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+        this.category_id = category_id;
     }
-
-
-
-
-
 }
