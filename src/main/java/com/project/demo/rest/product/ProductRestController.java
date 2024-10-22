@@ -88,7 +88,7 @@ public class ProductRestController {
             meta.setPageSize(produtsPage.getSize());
 
 
-            return new GlobalResponseHandler().handleResponse("Order retrieved successfully",
+            return new GlobalResponseHandler().handleResponse("Product retrieved successfully",
                     productDTOs, HttpStatus.OK, meta);
         } else {
             return new GlobalResponseHandler().handleResponse("Category id " + id + " not found"  ,
@@ -102,7 +102,7 @@ public class ProductRestController {
         if(foundCategory.isPresent()) {
             product.setCategory(foundCategory.get());
             Product savedProduct = productRepository.save(product);
-            return new GlobalResponseHandler().handleResponse("Order created successfully",
+            return new GlobalResponseHandler().handleResponse("Product created successfully",
                     savedProduct, HttpStatus.CREATED, request);
         } else {
             return new GlobalResponseHandler().handleResponse("Category id " + id + " not found"  ,
@@ -166,7 +166,7 @@ public class ProductRestController {
             Optional<Category> category = categoryRepository.findById(foundProduct.get().getCategory().getId());
             category.get().getProducts().remove(foundProduct.get());
             productRepository.deleteById(foundProduct.get().getId());
-            return new GlobalResponseHandler().handleResponse("Order deleted successfully",
+            return new GlobalResponseHandler().handleResponse("Product deleted successfully",
                     foundProduct.get(), HttpStatus.OK, request);
         } else {
             return new GlobalResponseHandler().handleResponse("Order id " + productId + " not found"  ,

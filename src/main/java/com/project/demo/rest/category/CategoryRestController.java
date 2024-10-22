@@ -40,7 +40,7 @@ public class CategoryRestController {
         meta.setPageNumber(categoriesPage.getNumber() + 1);
         meta.setPageSize(categoriesPage.getSize());
 
-        return new GlobalResponseHandler().handleResponse("Order retrieved successfully",
+        return new GlobalResponseHandler().handleResponse("Category retrieved successfully",
                 categoriesPage.getContent(), HttpStatus.OK, meta);
     }
 
